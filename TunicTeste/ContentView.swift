@@ -67,17 +67,20 @@ struct ContentView: View {
                 .cornerRadius(8)
                 .padding(.horizontal)
             } else {
-                HStack{
+                HStack(alignment: .center){
                     Image(systemName: "paperclip")
                         .foregroundColor(.black)
                     Text("Anexar")
                         .foregroundColor(.black)
+                    
                     Spacer()
+                    
                 }
+               
                 .padding()
                 .background(Color.purple.opacity(0.4))
                 .cornerRadius(8)
-                .padding(.horizontal)
+                .padding(.horizontal, 21)
             
             }
             TextField("Tipo de arquivo (extensão, como: .pdf )", text: $tipoArquivo)
@@ -99,6 +102,9 @@ struct ContentView: View {
         }
         
       }
+    func anexarArquivo(){
+        arquivoAnexado = "AP2-2022.2.pdf"
+    }
       
 }
 
