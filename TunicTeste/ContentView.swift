@@ -43,40 +43,52 @@ struct AdicionarObjetivoView: View {
                     Text("Links")
                         .font(.title2)
                         .bold()
-                        
+                    
                     Spacer()
                     Button(action: {
-                        isLinkFieldVisible.toggle()
+                        withAnimation{
+                            isLinkFieldVisible.toggle()
+                        }
                     }) {
                         Image(systemName: "plus.circle.fill")
-                            .foregroundColor(.cyan)
+                            .background(.green)
+                            .foregroundColor(.black)
                             .font(.system(size: 24))
+                            .cornerRadius(8)
                     }
-                 }
+                }
                 
                 // Campo de Texto para o Link
                 if isLinkFieldVisible {
                     VStack {
-                        TextField("Insira o link", text: $linkText)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding()
-                           
-                        
-                        Button(action: {
-                            if !linkText.isEmpty {
-                                anexados.append(linkText)
-                                linkText = ""
-                                isLinkFieldVisible = false
-                            }
-                        }) {
-                            Text("Anexar link")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(Color.cyan)
-                                .cornerRadius(10)
-                        }
+                        ZStack(alignment: .leading) {
+                                                   // Placeholder manual com cor branca
+                                                   if linkText.isEmpty {
+                                                       Text("Digite o link")
+                                                           .foregroundColor(.white)
+                                                           .padding(.leading, 10)
+                                                   }
+                            TextField("", text: $linkText)
+                                                       .padding()
+                                                       .background(Color.black.opacity(0.6))
+                                                       .cornerRadius(8)
+                                                       .foregroundColor(.white)
+                                               }
+                                               
+                                               Button(action: {
+                                                   if !linkText.isEmpty {
+                                                       anexados.append(linkText)
+                                                       linkText = ""
+                                                       isLinkFieldVisible = false
+                                                   }
+                                               }) {
+                                                   Text("Anexar link")
+                                                       .foregroundColor(.white)
+                                                       .padding()
+                                                       .frame(maxWidth: .infinity)
+                                                       .background(Color.cyan)
+                                                       .cornerRadius(8)
+                                               }
                         .padding()
                     }
                     .frame(minHeight: 150)
