@@ -62,38 +62,50 @@ struct AdicionarObjetivoView: View {
                 if isLinkFieldVisible {
                     VStack {
                         ZStack(alignment: .leading) {
-                                                   // Placeholder manual com cor branca
-                                                   if linkText.isEmpty {
-                                                       Text("Digite o link")
-                                                           .foregroundColor(.white)
-                                                           .padding(.leading, 10)
-                                                   }
-                            TextField("", text: $linkText)
-                                                       .padding()
-                                                       .background(Color.black.opacity(0.6))
-                                                       .cornerRadius(8)
-                                                       .foregroundColor(.white)
-                                               }
-                                               
-                                               Button(action: {
-                                                   if !linkText.isEmpty {
-                                                       anexados.append(linkText)
-                                                       linkText = ""
-                                                       isLinkFieldVisible = false
-                                                   }
-                                               }) {
-                                                   Text("Anexar link")
-                                                       .foregroundColor(.white)
-                                                       .padding()
-                                                       .frame(maxWidth: .infinity)
-                                                       .background(Color.cyan)
-                                                       .cornerRadius(8)
-                                               }
-                        .padding()
+                            // Placeholder manual com cor branca
+                            if linkText.isEmpty {
+                                Text("Digite o link")
+                                    .padding(.leading, -155)
+                                    .padding(.top, 15)
+                                    .frame(width: 340)
+                                    .cornerRadius(10)
+                                    .foregroundColor(.white)
+                            }
+                            
+                            HStack{
+                                TextField("link", text: $linkText)
+                                    .padding()
+                                    .background(Color.black.opacity(0.4))
+                                    .frame(width: 340)
+                                    .cornerRadius(10)
+                                    .foregroundColor(.white)
+                            }
+                            .padding(.top)
+                        }
+                        
+                        HStack{
+                            Button(action: {
+                                if !linkText.isEmpty {
+                                    anexados.append(linkText)
+                                    linkText = ""
+                                    isLinkFieldVisible = false
+                                }
+                            }) {
+                                Text("Anexar link")
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color.cyan)
+                                    .cornerRadius(8)
+                            }
+                                                    }
+                        .padding(.horizontal)
                     }
-                    .frame(minHeight: 150)
+                    .padding(.bottom)
                     .background(.purple)
                     .transition(.slide)
+                    .cornerRadius(8)
+                    
                     
                 }
                 
