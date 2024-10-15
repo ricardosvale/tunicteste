@@ -75,10 +75,10 @@ struct AdicionarObjetivoView: View {
                             HStack{
                                 TextField("link", text: $linkText)
                                     .padding()
-                                    .background(Color.black.opacity(0.4))
+                                    .background(Color.black.opacity(0.8))
                                     .frame(width: 340)
                                     .cornerRadius(10)
-                                    .foregroundColor(.white)
+                                    
                             }
                             .padding(.top)
                         }
@@ -111,12 +111,19 @@ struct AdicionarObjetivoView: View {
                 
                 // Exibição dos links anexados
                 ForEach(anexados, id: \.self) { link in
-                    Text(link)
-                        .frame(maxWidth:.infinity, minHeight: 40)
-                        .background(.purple.opacity(0.4))
-                        .cornerRadius(8)
-                        .padding(.bottom, 5)
-                        .padding(.horizontal)
+                    HStack(){
+                        Text(link)
+                            .frame(maxWidth:.infinity, minHeight: 40)
+                            .cornerRadius(8)
+                            .padding(.bottom, 5)
+                            .padding(.horizontal)
+                           .lineLimit(1)
+                        Image(systemName: "link")
+                        .font(.title3)
+                        .foregroundColor(.black)
+                        .padding(.trailing, 10)
+                        
+                    }.background(.purple.opacity(0.4))
                 }
             }
             .cornerRadius(10)
@@ -136,7 +143,7 @@ struct AdicionarObjetivoView: View {
             }
         }
         .padding()
-        .background(Color.white.edgesIgnoringSafeArea(.all))
+        .background(Color.black.edgesIgnoringSafeArea(.all))
     }
 }
 
