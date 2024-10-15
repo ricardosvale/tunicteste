@@ -6,111 +6,154 @@
 //
 
 import SwiftUI
-
-struct ContentView: View {
-    @State private var tituloObjetivo = ""
-    @State private var descricaoObjetivo = ""
-    @State private var arquivoAnexado: String? = nil
+struct AdicionarObjetivoView: View {
+    @State private var objetivoTitulo: String = ""
+    @State private var objetivoDescricao: String = ""
+    @State private var linkText: String = ""
+    @State private var isLinkFieldVisible: Bool = false
+    @State private var anexados: [String] = []
     
     var body: some View {
-        
         VStack(spacing: 20) {
+            // Título do Objetivo
+            Text("Objetivo 1")
+                .font(.largeTitle)
+                .bold()
+                .padding(.top)
             
-            Text("Objetivo")
-                .font(.title)
-                .fontWeight(.bold)
-            
-            TextField("Insira o título do objetivo", text: $tituloObjetivo)
+            // Campos de Título e Descrição do Objetivo
+            TextField("Aplicativo usando SwiftUI", text: $objetivoTitulo)
                 .padding()
-                .background(Color.green.opacity(0.7))
-                .cornerRadius(8)
+                .background(Color.green)
+                .cornerRadius(10)
                 .foregroundColor(.white)
-                .padding(.horizontal)
             
-            TextField("Insira a descrição do objetivo", text: $tituloObjetivo)
+            TextField("Faça um aplicativo de não te consuma enquanto faz", text: $objetivoDescricao)
                 .padding()
-                .background(Color.green.opacity(0.7))
-                .cornerRadius(8)
+                .background(Color.green)
+                .cornerRadius(10)
                 .foregroundColor(.white)
-                .padding(.horizontal)
             
-            
-            HStack{
-                Text("Materias")
-                    .font(.title3)
-                    .padding(.leading)
+            // Links Section
+            VStack(alignment: .leading) {
                 
-                Spacer()
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.green)
-                    .frame(width: 35, height: 30)
-                    .overlay((Image(systemName: "plus.circle.fill")))
-                    .foregroundColor(.black)
-                    .font(.title3)
-                    .padding(.trailing)
-            }
-            .padding(.top)
-            
-            Text("Tipo de arquivo (extensão, como: .pdf )")
-                .multilineTextAlignment(.trailing)
-                .foregroundColor(.gray)
-                .padding(.leading, -70)
-        }
-        // List com Section e usar Head para descever o tipode arquivo
-        
-        
-        VStack{
-            ScrollView(.vertical){
-            ForEach(0..<9){ number in
-               
-                    Label("AP2-2022.2.pdf", systemImage: "doc.on.doc")
-                        .frame(maxWidth:.infinity, minHeight: 40)
-                        .background(.purple.opacity(0.4))
-                        .cornerRadius(8)
-                        .padding(.bottom, 5)
-                        .padding(.horizontal)
+                
+                // Botão para adicionar campo de Link
+                HStack {
+                    Text("Links")
+                        .font(.title2)
+                        .bold()
+                    
+                    Spacer()
+                    Button(action: {
+                        withAnimation{
+                            isLinkFieldVisible.toggle()
+                        }
+                    }) {
+                        Image(systemName: "plus.circle.fill")
+                            .background(.green)
+                            .foregroundColor(.black)
+                            .font(.system(size: 24))
+                            .cornerRadius(8)
+                    }
                 }
-            }.frame(maxHeight: 250)
-        }
-        .foregroundColor(.black)
-        .padding(5)
-        
-        //Botão anexar
-        Button(action: {
+                
+                // Campo de Texto para o Link
+                if isLinkFieldVisible {
+                    VStack {
+                        ZStack(alignment: .leading) {
+                            // Placeholder manual com cor branca
+                            if linkText.isEmpty {
+                                Text("Digite o link")
+                                    .padding(.leading, -155)
+                                    .padding(.top, 15)
+                                    .frame(width: 340)
+                                    .cornerRadius(10)
+                                    .foregroundColor(.white)
+                            }
+                            
+                            HStack{
+                                TextField("link", text: $linkText)
+                                    .padding()
+                                    .background(Color.black.opacity(0.8))
+                                    .frame(width: 340)
+                                    .cornerRadius(10)
+                                    
+                            }
+                            .padding(.top)
+                        }
+                        
+                        HStack{
+                            Button(action: {
+                                if !linkText.isEmpty {
+                                    anexados.append(linkText)
+                                    linkText = ""
+                                    isLinkFieldVisible = false
+                                }
+                            }) {
+                                Text("Anexar link")
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color.cyan)
+                                    .cornerRadius(8)
+                            }
+                                                    }
+                        .padding(.horizontal)
+                    }
+                    .padding(.bottom)
+                    .background(.purple)
+                    .transition(.slide)
+                    .cornerRadius(8)
+                    
+                    
+                }
+                
+                // Exibição dos links anexados
+                ForEach(anexados, id: \.self) { link in
+                    HStack(){
+                        Text(link)
+                            .frame(maxWidth:.infinity, minHeight: 40)
+                            .cornerRadius(8)
+                            .padding(.bottom, 5)
+                            .padding(.horizontal)
+                           .lineLimit(1)
+                        Image(systemName: "link")
+                        .font(.title3)
+                        .foregroundColor(.black)
+                        .padding(.trailing, 10)
+                        
+                    }.background(.purple.opacity(0.4))
+                }
+            }
+            .cornerRadius(10)
             
-        }){
-            Label("Anexar arquivo", systemImage: "paperclip")
-                .foregroundColor(.black)
-                .font(.title3)
-                .frame(maxWidth: .infinity)
-                .padding([.bottom, .top], 20)
-                .background(Color.purple.opacity(0.4))
-                .cornerRadius(8)
-        }
-        .padding(.horizontal)
-       
-        
-        Button(action: {
-            // Ação de adicionar objetivo
-        }) {
-            Text("Adicionar objetivo")
-                .foregroundColor(.black)
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color.cyan)
-                .cornerRadius(8)
+            Spacer()
+            
+            // Botão de Adicionar Objetivo
+            Button(action: {
+                // Ação de adicionar objetivo
+            }) {
+                Text("Adicionar objetivo")
+                    .foregroundColor(.black)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.cyan)
+                    .cornerRadius(8)
+            }
         }
         .padding()
-        
-       
-        
+        .background(Color.black.edgesIgnoringSafeArea(.all))
     }
-    func anexarArquivo(){
-        arquivoAnexado = "AP2-2022.2.pdf"
-    }
-    
 }
 
+struct AdicionarObjetivoView_Previews: PreviewProvider {
+    static var previews: some View {
+        AdicionarObjetivoView()
+    }
+}
+
+
 #Preview {
-    ContentView()
+    AdicionarObjetivoView()
 }
