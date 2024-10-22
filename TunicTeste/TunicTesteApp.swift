@@ -11,7 +11,7 @@ import SwiftUI
 struct TunicTesteApp: App {
     var body: some Scene {
         WindowGroup {
-            AdicionarObjetivoView()
+            Lista_de_Membros()
         }
     }
 }
