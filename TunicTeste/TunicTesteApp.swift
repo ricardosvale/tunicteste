@@ -12,6 +12,7 @@ struct TunicTesteApp: App {
     var body: some Scene {
         WindowGroup {
             Lista_de_Membros()
+                .environmentObject(DesafioViewModel())
         }
     }
 }

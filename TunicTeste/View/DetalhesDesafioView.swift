@@ -5,8 +5,10 @@
 //  Created by Ricardo Silva Vale on 06/11/24.
 
 import SwiftUI
-
+ 
 struct DetalhesDesafioView: View {
+    
+    @StateObject var viewModel = DesafioViewModel()
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -74,10 +76,13 @@ struct DetalhesDesafioView: View {
             
 //            Button("Interação", action: {})
         }
+        .environmentObject(viewModel)
     }
+    
 }
 
 #Preview {
     DetalhesDesafioView()
+      
 }
 

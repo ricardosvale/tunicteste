@@ -5,11 +5,10 @@
 //  Created by Ricardo Silva Vale on 06/11/24.
 //
 
-import SwiftUI
-
 import Foundation
 
-class DesafioViewModel: ObservableObject{
+class DesafioViewModel: ObservableObject {
+   
     @Published var desafios: [Desafio]
     @Published var desafioById: Desafio?
     @Published var objetivos: [Objetivo] = []

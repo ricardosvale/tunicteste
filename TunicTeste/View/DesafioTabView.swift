@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct DesafioTabView: View {
+    
+    @EnvironmentObject var desafioViewModel: DesafioViewModel
+    
     @State private var selectedPage = 0
     private let totalDesafios = 3
-    @StateObject private var desafioViewModel = DesafioViewModel()
-    
     var body: some View {
         TabView(selection: $selectedPage) {
             //let desafios = desafioViewModel.desafios
@@ -45,6 +46,4 @@ struct DesafioTabView: View {
     }
 }
 
-#Preview {
-    DesafioTabView()
-}
+

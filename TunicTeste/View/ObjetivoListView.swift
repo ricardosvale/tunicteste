@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ObjetivoListView: View {
-    @StateObject private var desafioViewModel = DesafioViewModel()
+    @EnvironmentObject var desafioViewModel: DesafioViewModel
 //    @State var desafioID = "E91FEF1E-FF2B-42C9-BBF8-DAC63A307CE0"
 //    let objetivos = Objetivo.objetivosList
     
@@ -29,6 +29,3 @@ struct ObjetivoListView: View {
     }
 }
 
-#Preview {
-    ObjetivoListView()
-}
