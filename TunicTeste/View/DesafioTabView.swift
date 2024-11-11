@@ -28,12 +28,16 @@ struct DesafioTabView: View {
                 )
                 .padding(.horizontal, 16)
                 .tag(index)
+                .onAppear{
+                    desafioViewModel.selectedDesafioID = desafio.id.uuidString
+                }
             }
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         .frame(height: 200)
         .padding(.horizontal, -8)
         .padding(.top, -30)
+        
         
         HStack() {
             ForEach(0..<desafioViewModel.desafios.count, id: \.self) { index in

@@ -23,9 +23,9 @@ struct ObjetivoListView: View {
             }
         }
         .listStyle(.plain)
-        .onAppear{
-            desafioViewModel.loadObjetivos(for: desafioViewModel.desafioID)
-        }
+//        .onAppear{
+//            desafioViewModel.loadObjetivos(for: desafioViewModel.desafioID)
+//        }
     }
 }
 

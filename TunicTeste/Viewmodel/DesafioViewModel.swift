@@ -13,7 +13,14 @@ class DesafioViewModel: ObservableObject {
     @Published var desafioById: Desafio?
     @Published var objetivos: [Objetivo] = []
     @Published var objetivoCriado: Objetivo?
-    @Published var desafioID = "E91FEF1E-FF2B-42C9-BBF8-DAC63A307CE0"
+    @Published var selectedDesafioID: String? {
+        didSet {
+            if let id = selectedDesafioID {
+                loadObjetivos(for: id)
+            }
+        }
+    }
+    
     
     init(){
         self.desafios = []

@@ -30,6 +30,7 @@ struct DetalhesDesafioView: View {
                         Spacer()
                         
                         
+                        
                         Button {
                             
                         } label: {

@@ -155,5 +155,5 @@ struct AdicionarObjetivoView_Previews: PreviewProvider {
 
 
 #Preview {
-    Lista_de_Membros()
+    DetalhesDesafioView()
 }
