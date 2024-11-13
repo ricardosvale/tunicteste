@@ -28,9 +28,7 @@ struct DetalhesDesafioView: View {
                             .font(.system(size: 24))
                             .frame(maxWidth: .infinity, alignment: .leading)
                         Spacer()
-                        
-                        
-                        
+                    
                         Button {
                             
                         } label: {
