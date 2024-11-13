@@ -5,7 +5,6 @@ struct DesafioTabView: View {
     @EnvironmentObject var desafioViewModel: DesafioViewModel
     @State private var selectedPage = 0
     @State private var previousSelectedPage = 0
-    private let totalDesafios = 3
     
     var body: some View {
         TabView(selection: $selectedPage) {
@@ -45,20 +44,17 @@ struct DesafioTabView: View {
             if selectedPage != previousSelectedPage {
                 desafioViewModel.selectedDesafioID = desafioViewModel.desafios[selectedPage].id.uuidString
                 desafioViewModel.loadObjetivos(for: desafioViewModel.selectedDesafioID!){ sucess in
-                    
                     previousSelectedPage = selectedPage
                 }
-                
             }
         }
-            HStack {
-                ForEach(0..<desafioViewModel.desafios.count, id: \.self) { index in
-                    Circle()
-                        .fill(selectedPage == index ? Color.purple : Color.gray.opacity(0.4))
-                        .frame(width: 12, height: 12)
-                }
-            }.frame(maxWidth: .infinity)
-            
-        }
+        HStack {
+            ForEach(0..<desafioViewModel.desafios.count, id: \.self) { index in
+                Circle()
+                    .fill(selectedPage == index ? Color.purple : Color.gray.opacity(0.4))
+                    .frame(width: 12, height: 12)
+            }
+        }.frame(maxWidth: .infinity)
     }
+}
 
